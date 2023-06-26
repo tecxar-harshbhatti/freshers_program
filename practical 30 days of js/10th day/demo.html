@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Portfolio</title>
+  <style>
+    /* CSS styles for the portfolio */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+    }
+    .project {
+      background-color: #fff;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>My Portfolio</h1>
+
+    <div id="projects"></div>
+
+    <script>
+      // JavaScript code to dynamically generate projects
+      const projects = [
+        {
+          title: "Project 1",
+          description: "This is the first project.",
+          image: "project1.jpg",
+          link: "https://example.com/project1"
+        },
+        {
+          title: "Project 2",
+          description: "This is the second project.",
+          image: "project2.jpg",
+          link: "https://example.com/project2"
+        },
+        {
+          title: "Project 3",
+          description: "This is the third project.",
+          image: "project3.jpg",
+          link: "https://example.com/project3"
+        }
+      ];
+
+      // Function to generate project HTML
+      function generateProjectHTML(project) {
+        return `
+          <div class="project">
+            <h2>${project.title}</h2>
+            <p>${project.description}</p>
+            <img src="${project.image}" alt="${project.title}" width="300">
+            <a href="${project.link}" target="_blank">View Project</a>
+          </div>
+        `;
+      }
+
+      // Generate projects and append to the 'projects' div
+      const projectsContainer = document.getElementById("projects");
+      projects.forEach(project => {
+        const projectHTML = generateProjectHTML(project);
+        projectsContainer.innerHTML += projectHTML;
+      });
+    </script>
+  </div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <body>
+    <label for="dropdown">Select an option:</label>
+    <select id="dropdown" onchange="storeSelectedOption()">
+      <option value="">-- Select --</option>
+      <option value="option1">Option 1</option>
+      <option value="option2">Option 2</option>
+      <option value="option3">Option 3</option>
+    </select>
+
+    <script>
+      function storeSelectedOption() {
+        var selectedOption = document.getElementById('dropdown').value;
+        localStorage.setItem('selectedOption', selectedOption);
+      }
+
+      // Restore selected option on page load
+      window.onload = function() {
+        var selectedOption = localStorage.getItem('selectedOption');
+        if (selectedOption) {
+          document.getElementById('dropdown').value = selectedOption;
+        }
+      };
+
+      let string = 'harsh'
+      let stringToArray = string.split('');
+      console.log(stringToArray);
+    </script>
+  </body>
+</html>

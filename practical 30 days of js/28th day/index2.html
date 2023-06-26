@@ -1,0 +1,73 @@
+<html>
+    <body>
+        <form>
+            <label for="id">ID:</label>
+            <input type="text" id="id" required><br><br>
+          
+            <label for="name">Name:</label>
+            <input type="text" id="name" required><br><br>
+          
+            <label for="phoneNumber">Phone Number:</label>
+            <input type="text" id="phoneNumber" required><br><br>
+          
+            <button type="button" onclick="saveData()">Save</button>
+            <button type="button" onclick="loadData()">Load</button>
+            <button type="button" onclick="deleteData()">Delete</button>
+          </form>
+
+        <script>
+            // Function to save the data in localStorage
+function saveData() {
+  // Get the values from the form
+  var id = document.getElementById("id").value;
+  var name = document.getElementById("name").value;
+  var phoneNumber = document.getElementById("phoneNumber").value;
+  
+  // Create an object to hold the data
+  var data = {
+    id: id,
+    name: name,
+    phoneNumber: phoneNumber
+  };
+  
+  // Save the data in localStorage
+  localStorage.setItem("userData", JSON.stringify(data));
+  
+  // Display a success message
+  alert("Data saved successfully!");
+}
+
+// Function to load the data from localStorage
+function loadData() {
+  // Retrieve the data from localStorage
+  var data = localStorage.getItem("userData");
+  
+  // Check if data exists in localStorage
+  if (data) {
+    data = JSON.parse(data);
+    
+    // Populate the form fields with the retrieved values
+    document.getElementById("id").value = data.id;
+    document.getElementById("name").value = data.name;
+    document.getElementById("phoneNumber").value = data.phoneNumber;
+  }
+}
+
+// Function to delete the data from localStorage
+function deleteData() {
+  // Remove the data from localStorage
+  localStorage.removeItem("userData");
+  
+  // Clear the form fields
+  document.getElementById("id").value = "";
+  document.getElementById("name").value = "";
+  document.getElementById("phoneNumber").value = "";
+  
+  // Display a success message
+  alert("Data deleted successfully!");
+}
+
+        </script>
+
+    </body>
+</html>
