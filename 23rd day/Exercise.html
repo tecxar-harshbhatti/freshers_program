@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <style>
+            .even {
+                color: blue;
+            }
+    
+            .odd {
+                color: red;
+            }
+        </style>
+    </head>
+    <body>
+       <center> 
+            <div id="numberContainer"></div>
+        </center>
+        <script>
+
+            function generateNumbers(n){
+                let numbers = []
+                for(let i=0; i<n; i++){
+                    numbers.push(Math.floor(Math.random() * 100))
+                } 
+                return numbers;
+            }
+          //generateNumber(10)
+
+          function oddEven(numbers){
+                let markedNumbers = []
+                for(var i = 0; i < numbers.length; i++){
+                    if(numbers[i]%2==0){
+                        markedNumbers.push('<span class="even">'+numbers[i]+'</span>')
+                    }
+                    else{
+                        markedNumbers.push('<span class="odd">'+numbers[i]+'</span>')
+                    }
+                }
+                //document.write(markedNumbers)
+               return markedNumbers;
+          }
+          //oddEven([59,57,49,86,17,6,65,84,26,36])
+
+
+          function displayNumbers(numbers){
+                let numberContainer = document.getElementById('numberContainer')
+                numberContainer.innerHTML = numbers.join(' ');
+          }
+
+          var sequence = generateNumbers(10);
+
+          var markedSequence = oddEven(sequence);
+
+          displayNumbers(markedSequence);
+        </script>
+    </body>
+</html>

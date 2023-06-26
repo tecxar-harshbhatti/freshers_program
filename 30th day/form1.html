@@ -1,0 +1,104 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="./style.scss">
+    </head>
+    <body>
+        <form class="form" name="form" id="myForm" method="post" onsubmit="return validate()">
+           <div class="i1"> <label>Name:</label><br><input type="text" id="name" name="name" placeholder="Enter name:"></div>
+           <div class="i2"> <label>Last Name:</label><br><input type="text" id="lname" name="lname" placeholder="Enter Last name:"></div>
+           <div class="i3"> <label>Email</label><br><input type="email" id="email" name="email" placeholder="Enter Email"></div>
+           <div class="i4"> <label>Password</label><br><input type="password" id="password" name="password" placeholder="Enter Your password"></div>
+           <div class="i5"> <label>Telephone</label><br><input type="number" id="telephone" name="telephone" placeholder="Enter telephone number"></div>
+           <div class="i6"> <label>Bio</label><br><input type="text" id="bio" name="bio" placeholder="Enter Your bio here"></div>
+           <div class="btn"> <button input type="submit">Submit</button></div>
+        </form>
+ <button id="generateIdButton" onclick="generateId()">Generate ID</button>
+
+ <button onclick="addForm()">Add Form</button>
+ <div id="formContainer"></div>
+        <script>
+            function validate(){
+
+                var name = document.form.name.value;
+                var lname = document.form.lname.value;
+                var email = document.form.email.value;
+                var password = document.form.password.value;
+                var telephone = document.form.telephone.value;
+                var bio = document.form.bio.value;
+
+            if(name == '' || name == null || name.length<3 || name.lengt>16)
+            {
+                alert('first name must be alphabetic and contain 3 to 16 characters')
+                return false;
+            }
+            else if(lname == '' || lname == null || lname.length<3 || lname.length>16)
+            {
+                alert('last name must be alphabetic and contain 3 to 16 characters')
+                return false;
+            }
+            else if(email == '' || email == null ||  ! /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)
+            {
+                alert('email must be valid address e.g. example@valid.com')
+                return false;
+            }
+            else if(password.length<6 || password.lengt>20 )
+            {
+                alert('password must be alphabetic (@,- are allowed) and between 6-20 characters')
+                return false;
+            }
+            else if(telephone === '' || telephone.length !== 11)
+            {
+                alert('a valid telephonr number (11 digits)')
+                return false;
+            }
+            else if(bio == '')
+            {
+                alert ('write atleast few words')
+                return false;
+            }
+                
+            }
+
+            const form = document.getElementById('myForm');     //ID Selector
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                const formData = new FormData(form);        //get form data
+                const formObject = Object.fromEntries(formData);     //converting formData to plain text
+                localStorage.setItem('formData', JSON.stringify(formObject));
+                form.reset();
+            });
+            
+
+            function generateId() {
+        // Generate a random number between 0 and 9999
+        var randomNum = Math.floor(Math.random() * 99  );
+
+        // Get the current timestamp
+        var timestamp = Date.now();
+
+        // Concatenate the prefix 'id' with the random number and timestamp
+        var generatedId = 'id' + randomNum ;
+
+        // Use the generated ID
+        console.log(generatedId);
+      }
+   
+
+      var formCounter = 0;
+
+      function addForm() {
+        formCounter++;
+
+        var formId = 'form' + formCounter;
+
+        var formElement = document.createElement('form');
+        formElement.id = formId;
+        formElement.innerHTML = 'Form ID: ' + formId;
+
+        document.getElementById('formContainer').appendChild(formElement);
+      }
+
+        </script>
+    </body>
+</html>
